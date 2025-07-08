@@ -1,4 +1,5 @@
 import Image from "next/image"
+import { Facebook, Instagram, Linkedin } from "lucide-react"
 
 export function Footer() {
   const footerSections = [
@@ -9,11 +10,11 @@ export function Footer() {
     {
       title: "Company",
       links: ["About Us", "Careers", "Contact", "Privacy Policy"],
-    },
-    {
-      title: "Resources",
-      links: ["Case Studies", "White Papers", "Blog", "Support"],
-    },
+    }
+    // {
+    //   title: "Resources",
+    //   links: ["Case Studies", "White Papers", "Blog", "Support"],
+    // },
   ]
 
   return (
@@ -23,7 +24,7 @@ export function Footer() {
           <div className="col-span-2">
             <Image
               src="/Logo.png"
-              alt="ANAMIX RESEARCH - Trusted Data. Smart Decisions. Global Impact"
+              alt="Logo"
               width={320}
               height={60}
               className="h-10 w-auto mb-4 brightness-0 invert hover:scale-105 transition-transform duration-300"
@@ -31,15 +32,15 @@ export function Footer() {
             <p className="text-gray-300 mb-4 max-w-md">
               Leading market research with 50+ years of combined experience and intelligent insights across PAN INDIA.
             </p>
-            <div className="mb-4 text-gray-200 text-sm">
-              <div className="mb-2">
+            <div className="mb-4 text-gray-200 text-sm flex flex-col md:flex-row md:space-x-8">
+              <div className="mb-2 md:mb-0 md:flex-1">
                 <span className="font-semibold">Registered Office</span><br/>
                 B-4029, Gali No-110/107,<br/>
                 Sant Nagar, Burari,<br/>
                 Delhi - 110084<br/>
                 <span className="font-semibold">Phone:</span> <a href="tel:01144729131" className="text-blue-200 hover:underline ml-1">011-44729131</a>
               </div>
-              <div>
+              <div className="md:flex-1">
                 <span className="font-semibold">Corporate Office</span><br/>
                 4/51, Nehru Nagar,<br/>
                 Near Oxford Public School,<br/>
@@ -47,10 +48,16 @@ export function Footer() {
                 <span className="font-semibold">Phone:</span> <a href="tel:01141607295" className="text-blue-200 hover:underline ml-1">011-41607295</a>
               </div>
             </div>
-            <div className="flex space-x-4">
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-cyan-500 rounded hover:scale-110 transition-transform duration-300 cursor-pointer"></div>
-              <div className="w-8 h-8 bg-gradient-to-r from-cyan-500 to-blue-500 rounded hover:scale-110 transition-transform duration-300 cursor-pointer"></div>
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-cyan-600 rounded hover:scale-110 transition-transform duration-300 cursor-pointer"></div>
+            <div className="flex space-x-4 mt-4">
+              <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer">
+                <Facebook className="w-6 h-6 text-white hover:text-blue-400 transition-colors duration-200" />
+              </a>
+              <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">
+                <Instagram className="w-6 h-6 text-white hover:text-pink-400 transition-colors duration-200" />
+              </a>
+              <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer">
+                <Linkedin className="w-6 h-6 text-white hover:text-blue-300 transition-colors duration-200" />
+              </a>
             </div>
           </div>
           {footerSections.map((section, index) => (

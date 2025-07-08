@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button.jsx"
 import { ArrowRight, Play, BarChart3, TrendingUp, Users, Globe, Sparkles, MessageCircle } from "lucide-react"
+import Link from "next/link"
 
 export function HeroSection() {
   return (
@@ -52,25 +53,27 @@ export function HeroSection() {
             </div>
             <div className="flex flex-col sm:flex-row gap-4 animate-in fade-in slide-in-from-left duration-1000 delay-1300">
               {/* Modern Get In Touch Button */}
-              <Button
-                size="lg"
-                className="relative group bg-gradient-to-r from-blue-600 via-blue-700 to-cyan-600 hover:from-blue-700 hover:via-cyan-600 hover:to-blue-800 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 rounded-xl px-8 py-3 overflow-hidden"
-              >
-                {/* Animated background overlay */}
-                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+              <Link href="/contact-us">
+                <Button
+                  size="lg"
+                  className="relative group bg-gradient-to-r from-blue-600 via-blue-700 to-cyan-600 hover:from-blue-700 hover:via-cyan-600 hover:to-blue-800 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 rounded-xl px-8 py-3 overflow-hidden"
+                >
+                  {/* Animated background overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
 
-                {/* Icon and text */}
-                <div className="relative flex items-center">
-                  <MessageCircle className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
-                  <span>GET IN TOUCH</span>
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
-                </div>
+                  {/* Icon and text */}
+                  <div className="relative flex items-center">
+                    <MessageCircle className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
+                    <span>GET IN TOUCH</span>
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                  </div>
 
-                {/* Sparkle effect */}
-                <div className="absolute top-1 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <Sparkles className="h-3 w-3 text-cyan-200 animate-pulse" />
-                </div>
-              </Button>
+                  {/* Sparkle effect */}
+                  <div className="absolute top-1 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <Sparkles className="h-3 w-3 text-cyan-200 animate-pulse" />
+                  </div>
+                </Button>
+              </Link>
 
               {/* Modern Watch Demo Button */}
               <Button

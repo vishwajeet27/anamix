@@ -74,7 +74,7 @@ export function ServicesSection() {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 animate-in fade-in slide-in-from-top duration-700">
-          <Badge className="mb-4 bg-blue-100 text-blue-700 border-blue-300 px-4 py-2 text-sm font-semibold animate-pulse">
+          <Badge className="mb-4 bg-blue-100 text-blue-700 border-blue-300 px-4 py-2 text-sm font-semibold animate-pulse animate-bounce">
             OUR SERVICES
           </Badge>
           <h2 className="text-4xl font-bold mb-4 text-gray-900 animate-in fade-in slide-in-from-top duration-700 delay-200">

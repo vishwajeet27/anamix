@@ -12,6 +12,7 @@ export default function ContactUsPage() {
             <Badge className="mb-4 bg-blue-100 text-blue-700 border-blue-300 px-4 py-2 text-sm font-semibold">
               CONTACT US
             </Badge>
+          
             <h2 className="text-4xl font-bold mb-4 text-gray-900">Get in Touch with ANAMIX</h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Have questions or want to start a project? Fill out the form below and our team will get back to you promptly.
