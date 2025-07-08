@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button.jsx"
 import { ArrowRight, Sparkles } from "lucide-react"
 
 export function CTASection() {

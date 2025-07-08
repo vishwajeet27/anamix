@@ -31,6 +31,22 @@ export function Footer() {
             <p className="text-gray-300 mb-4 max-w-md">
               Leading market research with 50+ years of combined experience and intelligent insights across PAN INDIA.
             </p>
+            <div className="mb-4 text-gray-200 text-sm">
+              <div className="mb-2">
+                <span className="font-semibold">Registered Office</span><br/>
+                B-4029, Gali No-110/107,<br/>
+                Sant Nagar, Burari,<br/>
+                Delhi - 110084<br/>
+                <span className="font-semibold">Phone:</span> <a href="tel:01144729131" className="text-blue-200 hover:underline ml-1">011-44729131</a>
+              </div>
+              <div>
+                <span className="font-semibold">Corporate Office</span><br/>
+                4/51, Nehru Nagar,<br/>
+                Near Oxford Public School,<br/>
+                Delhi - 110065<br/>
+                <span className="font-semibold">Phone:</span> <a href="tel:01141607295" className="text-blue-200 hover:underline ml-1">011-41607295</a>
+              </div>
+            </div>
             <div className="flex space-x-4">
               <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-cyan-500 rounded hover:scale-110 transition-transform duration-300 cursor-pointer"></div>
               <div className="w-8 h-8 bg-gradient-to-r from-cyan-500 to-blue-500 rounded hover:scale-110 transition-transform duration-300 cursor-pointer"></div>

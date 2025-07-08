@@ -1,5 +1,5 @@
-import { Badge } from "@/components/ui/badge"
-import { Card, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge.jsx"
+import { Card, CardContent } from "@/components/ui/card.jsx"
 import { MapPin, Building, Users, Clock, Star, TrendingUp } from "lucide-react"
 
 export function LocationsSection() {

@@ -1,6 +1,7 @@
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button.jsx"
 import Image from "next/image"
 import { LogIn, Sparkles } from "lucide-react"
+import Link from "next/link"
 
 export function Navigation() {
   return (
@@ -8,26 +9,33 @@ export function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center flex-shrink-0">
-            <Image
-              src="/Logo.png"
-              alt="ANAMIX RESEARCH - Trusted Data. Smarter Decisions. Global Impact"
-              width={320}
-              height={60}
-              className="h-8 w-auto hover:scale-110 transition-all duration-500 ease-out animate-in fade-in slide-in-from-left duration-700"
-            />
+            <Link href="/">
+              <Image
+                src="/Logo.png"
+                alt="ANAMIX RESEARCH - Trusted Data. Smarter Decisions. Global Impact"
+                width={320}
+                height={60}
+                className="h-8 w-auto hover:scale-110 transition-all duration-500 ease-out animate-in fade-in slide-in-from-left duration-700 cursor-pointer"
+              />
+            </Link>
           </div>
           <div className="hidden xl:block flex-1">
             <div className="flex items-center justify-center space-x-6">
-              {["ABOUT US", "OUR WORK", "SERVICES", "CONTACT US"].map((item, index) => (
-                <a
-                  key={item}
-                  href="#"
+              {[
+                { label: "ABOUT US", href: "/about-us" },
+                { label: "OUR WORK", href: "#" },
+                { label: "SERVICES", href: "/services" },
+                { label: "CONTACT US", href: "/contact-us" },
+              ].map((item, index) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
                   className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium whitespace-nowrap transition-all duration-300 hover:bg-blue-50 rounded-lg relative group animate-in fade-in slide-in-from-top duration-700"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  {item}
+                  {item.label}
                   <span className="absolute inset-x-0 -bottom-px h-px bg-gradient-to-r from-blue-500 to-cyan-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-                </a>
+                </Link>
               ))}
             </div>
           </div>

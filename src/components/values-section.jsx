@@ -1,5 +1,5 @@
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { Card, CardContent } from "@/components/ui/card.jsx"
+import { Badge } from "@/components/ui/badge.jsx"
 import { Brain, Cpu, Award, Zap, Shield, Hammer, Lightbulb, Clock, DollarSign, Users } from "lucide-react"
 
 export function ValuesSection() {

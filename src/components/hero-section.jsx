@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button.jsx"
 import { ArrowRight, Play, BarChart3, TrendingUp, Users, Globe, Sparkles, MessageCircle } from "lucide-react"
 
 export function HeroSection() {

@@ -1,5 +1,5 @@
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { Card, CardContent } from "@/components/ui/card.jsx"
+import { Badge } from "@/components/ui/badge.jsx"
 import { BarChart3, Users, Globe, TrendingUp, CheckCircle, Star } from "lucide-react"
 
 export function ServicesSection() {
