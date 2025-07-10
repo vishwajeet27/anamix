@@ -1,5 +1,6 @@
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button.jsx"
 import { ArrowRight, Sparkles } from "lucide-react"
+import Link from "next/link"
 
 export function CTASection() {
   return (
@@ -38,20 +39,23 @@ export function CTASection() {
             consultation today.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-in fade-in slide-in-from-bottom duration-1000 delay-500">
-            <Button
-              size="lg"
-              className="bg-white hover:bg-gray-100 text-blue-600 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 group"
-            >
-              START FREE CONSULTATION
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
-            </Button>
-            <Button
+            <Link href="/contact-us" passHref legacyBehavior>
+              <Button
+                as="a"
+                size="lg"
+                className="bg-white hover:bg-gray-100 text-blue-600 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 group"
+              >
+                START FREE CONSULTATION
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+              </Button>
+            </Link>
+            {/* <Button
               size="lg"
               variant="outline"
               className="border-2 border-white text-white hover:bg-white/10 bg-transparent backdrop-blur-sm font-semibold transition-all duration-300 hover:scale-105"
             >
               VIEW CASE STUDIES
-            </Button>
+            </Button> */}
           </div>
         </div>
       </div>
