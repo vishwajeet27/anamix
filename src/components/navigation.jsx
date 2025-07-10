@@ -6,9 +6,32 @@ import { LogIn, Sparkles } from "lucide-react"
 import Link from "next/link"
 import { useState, useRef, useEffect } from "react"
 
+function ComingSoonModal({ open, onClose }) {
+  if (!open) return null;
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center min-h-screen bg-black/40 backdrop-blur-sm animate-fade-in">
+      <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-xs w-full text-center relative animate-in fade-in zoom-in duration-300">
+        <button
+          onClick={onClose}
+          className="absolute top-3 right-3 text-gray-400 hover:text-blue-600 text-2xl font-bold focus:outline-none"
+          aria-label="Close"
+        >
+          &times;
+        </button>
+        <div className="flex flex-col items-center">
+          <Sparkles className="h-10 w-10 text-blue-500 mb-2 animate-pulse" />
+          <h2 className="text-2xl font-bold mb-2 text-blue-700">Coming Soon</h2>
+          <p className="text-gray-600 mb-2">Sign in functionality is launching soon. Stay tuned!</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function Navigation() {
   const [menuOpen, setMenuOpen] = useState(false)
   const menuRef = useRef(null)
+  const [showSignIn, setShowSignIn] = useState(false)
 
   // Close menu on outside click
   useEffect(() => {
@@ -29,7 +52,7 @@ export function Navigation() {
 
   const navLinks = [
     { label: "ABOUT US", href: "/about-us" },
-    { label: "OUR WORK", href: "#" },
+    // { label: "OUR WORK", href: "#" },
     { label: "SERVICES", href: "/services" },
     { label: "CONTACT US", href: "/contact-us" },
   ]
@@ -68,7 +91,8 @@ export function Navigation() {
             {/* Modern Sign In Button */}
             <Button
               variant="ghost"
-              className="relative group bg-gradient-to-r from-gray-50 to-blue-50 hover:from-blue-50 hover:to-cyan-50 border border-gray-200 hover:border-blue-300 text-gray-700 hover:text-blue-600 text-sm px-4 py-2 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-md animate-in fade-in slide-in-from-right duration-700 delay-300 overflow-hidden"
+              className="relative group bg-gradient-to-r from-gray-50 to-blue-50 hover:from-blue-50 hover:to-cyan-50 border border-gray-200 hover:border-blue-300 text-gray-700 hover:text-blue-600 text-sm px-4 py-2 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-md animate-in fade-in slide-in-from-right duration-700 overflow-hidden"
+              onClick={() => setShowSignIn(true)}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 to-cyan-500/0 group-hover:from-blue-500/5 group-hover:to-cyan-500/5 transition-all duration-300"></div>
               <LogIn className="mr-2 h-4 w-4 group-hover:rotate-12 transition-transform duration-300" />
@@ -76,29 +100,31 @@ export function Navigation() {
             </Button>
 
             {/* Modern Get Started Button */}
-            <Button className="relative group bg-gradient-to-r from-blue-600 via-blue-700 to-cyan-600 hover:from-blue-700 hover:via-cyan-600 hover:to-blue-800 text-white font-semibold text-sm px-6 py-2 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 animate-in fade-in slide-in-from-right duration-700 delay-500 overflow-hidden">
-              {/* Animated background overlay */}
-              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+            <Link href="/services" passHref legacyBehavior>
+              <Button className="relative group bg-gradient-to-r from-blue-600 via-blue-700 to-cyan-600 hover:from-blue-700 hover:via-cyan-600 hover:to-blue-800 text-white font-semibold text-sm px-6 py-2 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 animate-in fade-in slide-in-from-right duration-700 delay-500 overflow-hidden">
+                {/* Animated background overlay */}
+                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
 
-              {/* Sparkle effect */}
-              <div className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <Sparkles className="h-3 w-3 text-cyan-200 animate-pulse" />
-              </div>
-
-              <span className="relative flex items-center">
-                GET STARTED
-                <div className="ml-2 w-5 h-5 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors duration-300">
-                  <svg
-                    className="w-3 h-3 text-white group-hover:translate-x-0.5 transition-transform duration-300"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
+                {/* Sparkle effect */}
+                <div className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <Sparkles className="h-3 w-3 text-cyan-200 animate-pulse" />
                 </div>
-              </span>
-            </Button>
+
+                <span className="relative flex items-center">
+                  GET STARTED
+                  <div className="ml-2 w-5 h-5 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors duration-300">
+                    <svg
+                      className="w-3 h-3 text-white group-hover:translate-x-0.5 transition-transform duration-300"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </span>
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -118,8 +144,11 @@ export function Navigation() {
       </div>
       {/* Mobile menu overlay */}
       {menuOpen && (
-        <div className="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm transition-opacity duration-300 xl:hidden">
-          <div ref={menuRef} className="absolute top-0 right-0 w-64 h-full bg-white shadow-lg p-6 flex flex-col gap-6 animate-in slide-in-from-right duration-300">
+        <>
+          {/* Transparent overlay without blur */}
+          <div className="fixed inset-0 z-40 transition-opacity duration-300 xl:hidden" />
+          {/* Solid sidebar */}
+          <div ref={menuRef} className="fixed top-0 right-0 z-50 w-64 h-full bg-white shadow-lg p-6 flex flex-col gap-6 animate-in slide-in-from-right duration-300">
             <div className="flex justify-end mb-4">
               <Button variant="ghost" size="sm" className="hover:bg-blue-50" onClick={() => setMenuOpen(false)} aria-label="Close menu">
                 <svg className="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -143,34 +172,39 @@ export function Navigation() {
               <Button
                 variant="ghost"
                 className="relative group bg-gradient-to-r from-gray-50 to-blue-50 hover:from-blue-50 hover:to-cyan-50 border border-gray-200 hover:border-blue-300 text-gray-700 hover:text-blue-600 text-sm px-4 py-2 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-md overflow-hidden"
+                onClick={() => setShowSignIn(true)}
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 to-cyan-500/0 group-hover:from-blue-500/5 group-hover:to-cyan-500/5 transition-all duration-300"></div>
                 <LogIn className="mr-2 h-4 w-4 group-hover:rotate-12 transition-transform duration-300" />
                 <span className="relative font-medium">SIGN IN</span>
               </Button>
-              <Button className="relative group bg-gradient-to-r from-blue-600 via-blue-700 to-cyan-600 hover:from-blue-700 hover:via-cyan-600 hover:to-blue-800 text-white font-semibold text-sm px-6 py-2 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-                <div className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <Sparkles className="h-3 w-3 text-cyan-200 animate-pulse" />
-                </div>
-                <span className="relative flex items-center">
-                  GET STARTED
-                  <div className="ml-2 w-5 h-5 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors duration-300">
-                    <svg
-                      className="w-3 h-3 text-white group-hover:translate-x-0.5 transition-transform duration-300"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
+              <Link href="/services" passHref legacyBehavior>
+                <Button className="relative group bg-gradient-to-r from-blue-600 via-blue-700 to-cyan-600 hover:from-blue-700 hover:via-cyan-600 hover:to-blue-800 text-white font-semibold text-sm px-6 py-2 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 animate-in fade-in slide-in-from-right duration-700 delay-500 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                  <div className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <Sparkles className="h-3 w-3 text-cyan-200 animate-pulse" />
                   </div>
-                </span>
-              </Button>
+                  <span className="relative flex items-center">
+                    GET STARTED
+                    <div className="ml-2 w-5 h-5 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors duration-300">
+                      <svg
+                        className="w-3 h-3 text-white group-hover:translate-x-0.5 transition-transform duration-300"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </span>
+                </Button>
+              </Link>
             </div>
           </div>
-        </div>
+        </>
       )}
+      {/* Modal for Coming Soon */}
+      <ComingSoonModal open={showSignIn} onClose={() => setShowSignIn(false)} />
     </nav>
   )
 }

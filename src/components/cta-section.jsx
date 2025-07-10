@@ -49,13 +49,13 @@ export function CTASection() {
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
               </Button>
             </Link>
-            <Button
+            {/* <Button
               size="lg"
               variant="outline"
               className="border-2 border-white text-white hover:bg-white/10 bg-transparent backdrop-blur-sm font-semibold transition-all duration-300 hover:scale-105"
             >
               VIEW CASE STUDIES
-            </Button>
+            </Button> */}
           </div>
         </div>
       </div>

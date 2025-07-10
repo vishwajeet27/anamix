@@ -10,7 +10,7 @@ export function AboutSection() {
       education: "Arts Graduate from Delhi",
       experience: "20+ Years in Market Research",
       companies: "IMRB, Indica, GFK, RSMRS, Intage, Takumi International",
-      photo: "/team/placeholder.jpg", // Placeholder image
+      photo: "/team/Manish Kumar.jpg", // Placeholder image
       description:
         "Manish, an Arts graduate with over 20 years of experience in market research, currently spearheads operations at ANAMIX. He has successfully managed large-scale client accounts in the past. His core strengths lie in client satisfaction, operational leadership, and team management—enabling him to ensure timely delivery and flawless execution across all project levels.\n\nPrior to launching his own venture, Manish held key positions at leading market research firms such as IMRB, Indica, GFK, RSMRS, Intage and Takumi. He is known for his exceptional ability to streamline systems and optimize processes across diverse functions, consistently driving performance and achieving strategic milestones.",
     },
@@ -20,7 +20,7 @@ export function AboutSection() {
       education: "PGDM Marketing - Welingkar Institute Mumbai",
       experience: "20+ Years in Market Research",
       companies: "TNS Mode, MBL RCG, NFO, TNS India, Hansa Research, Intage India, Takumi International",
-      photo: "/team/placeholder.jpg", // Placeholder image
+      photo: "/team/Arjun Yadav.jpg", // Placeholder image
       description:
         `Arjun holds a PGDM in Marketing from Welingkar Institute of Management, Mumbai, and brings over 20 years of rich experience in the Market Research industry, beginning his career with TNS Mode. He has deep expertise in both offline and online methodologies, spanning Qualitative and Quantitative research. Throughout his career, he has worked with reputed market research organizations including MBL RCG, NFO, TNS India, Hansa Research, and Intage India & Takumi before establishing his own venture.\n\nHe has served a wide array of clients across diverse industries—automotive, FMCG, electronics, electricals, pharmaceuticals, healthcare, sanitaryware, education, BFSI, IT, telecom, e-commerce, logistics, industrial, social, agriculture, hospitality, fashion & lifestyle, aviation, real estate, media, beverages, and food & service sectors—garnering multi-sectoral insights and domain knowledge.\n\nANAMIX stands to gain from his vast international experience, having worked with global clients from Japan, Germany, France, the UK, the US, Australia, China, Singapore, Italy, Korea, and Vietnam.`,
     },
@@ -31,13 +31,13 @@ export function AboutSection() {
       name: "Ram Chander",
       designation: "Manager Operations",
       city: "North India",
-      photo: "/team/priya.jpg", // Place your image in public/team/
+      photo: "/team/Ram Chander.jpg", // Place your image in public/team/
     },
     {
       name: "Balwant Singh",
       designation: "Manager Operations",
       city: "North India",
-      photo: "/team/balwant.jpg", // Place your image in public/team/
+      photo: "/team/Balwant Singh.jpg", // Place your image in public/team/
     },
     {
       name: "Ruhi Yasmin",
@@ -49,7 +49,7 @@ export function AboutSection() {
       name: "Kumar Karthikeyan",
       designation: "Manager - Operations",
       city: "South India",
-      photo: "/team/Karthikeyan.jpg",
+      photo: "/team/Karthik.jpg",
     },
     {
       name: "Madhavi Ashok",
@@ -124,35 +124,36 @@ export function AboutSection() {
           </div>
         </div>
         <div className="mt-20 mb-10">
-          <h3 className="text-3xl font-bold text-blue-800 mb-10 text-left">Our Directors</h3>
+          <h3 className="text-3xl font-bold text-blue-800 mb-10 text-center">Our Directors</h3>
           <div className="grid md:grid-cols-2 gap-10 max-w-6xl mx-auto">
             {directors.map((director, idx) => (
-              <div key={idx} className="bg-white rounded-2xl shadow-lg p-8 flex flex-col md:flex-row items-start text-left border-t-4 border-blue-200 hover:shadow-2xl transition-shadow duration-300">
-                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-full flex items-center justify-center mb-4 md:mb-0 md:mr-6 overflow-hidden">
+              <div key={idx} className="bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center text-center border-t-4 border-blue-200 hover:shadow-2xl transition-shadow duration-300">
+                <div
+                  className="rounded-full flex items-center justify-center mb-4 overflow-hidden border-4 border-blue-100"
+                  style={{ width: 160, height: 160 }}
+                >
                   <Image
                     src={director.photo}
                     alt={director.name}
-                    width={64}
-                    height={64}
-                    className="object-cover w-full h-full"
+                    width={160}
+                    height={160}
+                    className="object-cover object-center w-full h-full rounded-full"
                   />
                 </div>
-                <div>
-                  <h4 className="text-xl font-bold text-gray-900 mb-1">{director.name}</h4>
-                  <p className="text-blue-600 font-semibold mb-2 uppercase tracking-wide">{director.role}</p>
-                  <div className="text-gray-600 text-sm mb-2">
-                    <p><span className="font-semibold text-blue-600">Education:</span> {director.education}</p>
-                    <p><span className="font-semibold text-blue-600">Experience:</span> {director.experience}</p>
-                    <p><span className="font-semibold text-blue-600">Previous Companies:</span> {director.companies}</p>
-                  </div>
-                  <p className="text-gray-700 text-base mt-2">{director.description}</p>
+                <h4 className="text-xl font-bold text-gray-900 mb-1">{director.name}</h4>
+                <p className="text-blue-600 font-semibold mb-2 uppercase tracking-wide">{director.role}</p>
+                <div className="text-gray-600 text-sm mb-2">
+                  <p><span className="font-semibold text-blue-600">Education:</span> {director.education}</p>
+                  <p><span className="font-semibold text-blue-600">Experience:</span> {director.experience}</p>
+                  <p><span className="font-semibold text-blue-600">Previous Companies:</span> {director.companies}</p>
                 </div>
+                <p className="text-gray-700 text-base mt-2 whitespace-pre-line">{director.description}</p>
               </div>
             ))}
           </div>
         </div>
         <div className="mt-20 mb-10">
-          <h3 className="text-3xl font-bold text-blue-800 mb-10 text-left">Our Team</h3>
+          <h3 className="text-3xl font-bold text-blue-800 mb-10 text-center">Our Team</h3>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
             {team.map((member, idx) => (
               <div key={idx} className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center hover:shadow-2xl transition-shadow duration-300">
