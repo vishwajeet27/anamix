@@ -4,7 +4,14 @@ import { BarChart3, Users, Globe, TrendingUp, CheckCircle, Star } from "lucide-r
 
 import { ServicesSection } from "@/components/services-section.jsx";
 
-export default function ServicesPage() {
-  return <ServicesSection />;
+import { ResearchMethodologySection } from "@/components/research-methodology-section.jsx";
+
+export default function () {
+  return (
+    <div className="min-h-screen bg-white">
+      <ServicesSection />
+      <ResearchMethodologySection />
+    </div>
+  );
 }
  

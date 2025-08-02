@@ -1,8 +1,8 @@
 export function StatsSection() {
   const stats = [
-    { value: "15+", label: "Office Locations", color: "text-blue-600", bg: "bg-blue-100" },
+    { value: "750+", label: "Interviewers", color: "text-blue-600", bg: "bg-blue-100" },
     { value: "50+", label: "Years Combined Experience", color: "text-cyan-600", bg: "bg-cyan-100" },
-    { value: "10+", label: "Years with Japanese Teams", color: "text-blue-700", bg: "bg-blue-200" },
+    { value: "10+", label: "Experience with Japanese Teams", color: "text-blue-700", bg: "bg-blue-200" },
     { value: "PAN", label: "India Coverage", color: "text-cyan-700", bg: "bg-cyan-200" },
   ]
 

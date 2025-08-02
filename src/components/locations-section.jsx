@@ -1,291 +1,372 @@
+"use client"
+import React, { useState } from "react"
+import {
+  ComposableMap,
+  Geographies,
+  Geography,
+  Marker,
+} from "react-simple-maps"
 import { Badge } from "@/components/ui/badge.jsx"
 import { Card, CardContent } from "@/components/ui/card.jsx"
-import { MapPin, Building, Users, Clock, Star, TrendingUp } from "lucide-react"
+
+const indiaGeoUrl = "/india_states.geojson"
+
+const cities = [
+  // North India
+  {
+    name: "Delhi",
+    coordinates: [77.1025, 28.7041],
+    type: "Head Office",
+    specialty: "Operations Hub",
+  },
+  {
+    name: "Lucknow",
+    coordinates: [80.9462, 26.8467],
+    type: "Branch",
+    specialty: "FMCG",
+  },
+  {
+    name: "Ludhiana",
+    coordinates: [75.8573, 30.901],
+    type: "Branch",
+    specialty: "Agriculture",
+  },
+  {
+    name: "Jaipur",
+    coordinates: [75.7873, 26.9124],
+    type: "Branch",
+    specialty: "Tourism & Heritage",
+  },
+  {
+    name: "Kanpur",
+    coordinates: [80.3319, 26.4499],
+    type: "Branch",
+    specialty: "Manufacturing",
+  },
+  {
+    name: "Varanasi",
+    coordinates: [82.9739, 25.3176],
+    type: "Branch",
+    specialty: "Cultural Markets",
+  },
+  // West India
+  {
+    name: "Mumbai",
+    coordinates: [72.8777, 19.076],
+    type: "Branch",
+    specialty: "Financial Markets",
+  },
+  {
+    name: "Ahmedabad",
+    coordinates: [72.5714, 23.0225],
+    type: "Branch",
+    specialty: "Textiles",
+  },
+  {
+    name: "Pune",
+    coordinates: [73.8567, 18.5204],
+    type: "Branch",
+    specialty: "Automotive",
+  },
+  {
+    name: "Nagpur",
+    coordinates: [79.0882, 21.1458],
+    type: "Branch",
+    specialty: "Logistics Hub",
+  },
+  {
+    name: "Indore",
+    coordinates: [75.8577, 22.7196],
+    type: "Branch",
+    specialty: "Education",
+  },
+  // South India
+  {
+    name: "Chennai",
+    coordinates: [80.2707, 13.0827],
+    type: "Branch",
+    specialty: "Manufacturing",
+  },
+  {
+    name: "Bangalore",
+    coordinates: [77.5946, 12.9716],
+    type: "Branch",
+    specialty: "Tech Research",
+  },
+  {
+    name: "Hyderabad",
+    coordinates: [78.4867, 17.385],
+    type: "Branch",
+    specialty: "Pharma & Biotech",
+  },
+  {
+    name: "Kochi",
+    coordinates: [76.2673, 9.9312],
+    type: "Branch",
+    specialty: "Maritime & Ports",
+  },
+  // East India
+  {
+    name: "Kolkata",
+    coordinates: [88.3639, 22.5726],
+    type: "Branch",
+    specialty: "Traditional Markets",
+  },
+  {
+    name: "Patna",
+    coordinates: [85.1376, 25.5941],
+    type: "Branch",
+    specialty: "Rural Markets",
+  },
+  {
+    name: "Bhubaneswar",
+    coordinates: [85.8245, 20.2961],
+    type: "Branch",
+    specialty: "Mining & Steel",
+  },
+  {
+    name: "Guwahati",
+    coordinates: [91.7362, 26.1445],
+    type: "Branch",
+    specialty: "Northeast Markets",
+  },
+]
 
 export function LocationsSection() {
-  const milestones = [
-    {
-      year: "2025",
-      title: "Foundation & Expansion",
-      description: "ANAMIX established with strategic nationwide presence",
-      offices: [
-        { city: "Delhi", type: "Head Office", established: "May 2025", team: "25+", specialty: "Operations Hub" },
-        { city: "Mumbai", type: "Branch", established: "June 2025", team: "15+", specialty: "Financial Markets" },
-        { city: "Bangalore", type: "Branch", established: "June 2025", team: "20+", specialty: "Tech Research" },
-        { city: "Chennai", type: "Branch", established: "June 2025", team: "12+", specialty: "Manufacturing" },
-      ],
-      color: "from-blue-500 to-cyan-500",
-      bgColor: "bg-blue-50",
-    },
-    {
-      year: "Phase 1",
-      title: "Northern & Western Expansion",
-      description: "Strengthening presence in key commercial centers",
-      offices: [
-        { city: "Pune", type: "Branch", established: "July 2025", team: "10+", specialty: "Automotive" },
-        { city: "Ahmedabad", type: "Branch", established: "July 2025", team: "8+", specialty: "Textiles" },
-        { city: "Lucknow", type: "Branch", established: "Aug 2025", team: "12+", specialty: "FMCG" },
-        { city: "Ludhiana", type: "Branch", established: "Aug 2025", team: "6+", specialty: "Agriculture" },
-      ],
-      color: "from-cyan-500 to-blue-600",
-      bgColor: "bg-cyan-50",
-    },
-    {
-      year: "Phase 2",
-      title: "Eastern & Central Coverage",
-      description: "Completing nationwide research infrastructure",
-      offices: [
-        { city: "Kolkata", type: "Branch", established: "Sep 2025", team: "14+", specialty: "Traditional Markets" },
-        { city: "Hyderabad", type: "Branch", established: "Sep 2025", team: "16+", specialty: "Pharma & Biotech" },
-        { city: "Nagpur", type: "Branch", established: "Oct 2025", team: "8+", specialty: "Logistics Hub" },
-        { city: "Indore", type: "Branch", established: "Oct 2025", team: "7+", specialty: "Education" },
-      ],
-      color: "from-blue-600 to-cyan-600",
-      bgColor: "bg-blue-100",
-    },
-    {
-      year: "Phase 3",
-      title: "Strategic Completion",
-      description: "Final expansion to complete PAN India coverage",
-      offices: [
-        { city: "Patna", type: "Branch", established: "Nov 2025", team: "9+", specialty: "Rural Markets" },
-        { city: "Bhubaneswar", type: "Branch", established: "Nov 2025", team: "6+", specialty: "Mining & Steel" },
-        { city: "Guwahati", type: "Branch", established: "Dec 2025", team: "5+", specialty: "Northeast Markets" },
-      ],
-      color: "from-cyan-600 to-blue-700",
-      bgColor: "bg-cyan-100",
-    },
-  ]
+  const [tooltipContent, setTooltipContent] = useState(null)
 
-  const totalTeamSize = milestones.reduce(
-    (total, phase) =>
-      total +
-      phase.offices.reduce((phaseTotal, office) => phaseTotal + Number.parseInt(office.team.replace("+", "")), 0),
-    0,
-  )
-
+  const totalOffices = cities.length
+  // const totalTeamSize = cities.reduce(
+  //   (acc, city) => acc + Number.parseInt(city.team.replace("+", "")),
+  //   0,
+  // )
+  const totalTeamSize = 1000;
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Flowing lines */}
-        <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 1000 1000">
-          <path
-            d="M0,300 Q250,200 500,300 T1000,300"
-            stroke="url(#gradient1)"
-            strokeWidth="2"
-            fill="none"
-            className="animate-pulse"
-          />
-          <path
-            d="M0,500 Q250,400 500,500 T1000,500"
-            stroke="url(#gradient2)"
-            strokeWidth="2"
-            fill="none"
-            className="animate-pulse"
-            style={{ animationDelay: "1s" }}
-          />
-          <path
-            d="M0,700 Q250,600 500,700 T1000,700"
-            stroke="url(#gradient3)"
-            strokeWidth="2"
-            fill="none"
-            className="animate-pulse"
-            style={{ animationDelay: "2s" }}
-          />
-          <defs>
-            <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.5" />
-              <stop offset="100%" stopColor="#06B6D4" stopOpacity="0.5" />
-            </linearGradient>
-            <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#06B6D4" stopOpacity="0.5" />
-              <stop offset="100%" stopColor="#3B82F6" stopOpacity="0.5" />
-            </linearGradient>
-            <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#1E40AF" stopOpacity="0.5" />
-              <stop offset="100%" stopColor="#0891B2" stopOpacity="0.5" />
-            </linearGradient>
-          </defs>
-        </svg>
+    <section className="py-20 relative overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <img 
+          src="/eartthBackground.jpg" 
+          alt="Earth Background" 
+          className="w-full h-full object-cover"
+        />
+        {/* Overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/60 via-blue-800/50 to-cyan-900/60"></div>
       </div>
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-16 animate-in fade-in slide-in-from-top duration-700">
-          <Badge className="mb-4 bg-blue-100 text-blue-700 border-blue-300 px-4 py-2 text-sm font-semibold">
-            EXPANSION JOURNEY
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12 relative z-10">
+          <Badge className="mb-4 bg-white/20 backdrop-blur-sm text-white border border-white/30 px-4 py-2 text-sm font-semibold">
+            PAN INDIA LOCATIONS
           </Badge>
-          <h2 className="text-4xl font-bold mb-4 text-gray-900">
+          <h2 className="text-4xl font-bold mb-4 text-white">
             Our{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-600">
-              Growth Story
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-blue-200">
+              City Presence
             </span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            From foundation to nationwide presence - discover how ANAMIX strategically expanded across India to serve
-            every major market with specialized expertise.
+          <p className="text-xl text-white/90 max-w-3xl mx-auto">
+            Explore our nationwide offices strategically located across India to serve diverse markets with expertise.
           </p>
         </div>
 
-        {/* Key Metrics */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-          <div className="text-center animate-in fade-in slide-in-from-left duration-700">
+        {/* Metrics */}
+        {/* <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 text-center">
+          <div>
             <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg">
-              <Building className="h-8 w-8 text-white" />
+              <svg className="h-8 w-8 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M10 20a10 10 0 1 1 0-20 10 10 0 0 1 0 20z"/></svg>
             </div>
-            <div className="text-3xl font-bold text-gray-900 mb-1">15</div>
+            <div className="text-3xl font-bold text-gray-900">{totalOffices}</div>
             <div className="text-sm text-gray-600">Total Offices</div>
           </div>
-          <div className="text-center animate-in fade-in slide-in-from-left duration-700 delay-200">
+          <div>
             <div className="w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg">
-              <Users className="h-8 w-8 text-white" />
+              <svg className="h-8 w-8 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M13 7H7v6h6V7z"/></svg>
             </div>
-            <div className="text-3xl font-bold text-gray-900 mb-1">{totalTeamSize}+</div>
+            <div className="text-3xl font-bold text-gray-900">{totalTeamSize}+</div>
             <div className="text-sm text-gray-600">Team Members</div>
           </div>
-          <div className="text-center animate-in fade-in slide-in-from-right duration-700 delay-400">
+          <div>
             <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg">
-              <Clock className="h-8 w-8 text-white" />
+              <svg className="h-8 w-8 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M3 6a9 9 0 0 1 14 0v9a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V6z"/></svg>
             </div>
-            <div className="text-3xl font-bold text-gray-900 mb-1">8</div>
+            <div className="text-3xl font-bold text-gray-900">8</div>
             <div className="text-sm text-gray-600">Months Timeline</div>
           </div>
-          <div className="text-center animate-in fade-in slide-in-from-right duration-700 delay-600">
+          <div>
             <div className="w-16 h-16 bg-gradient-to-r from-cyan-600 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg">
-              <Star className="h-8 w-8 text-white" />
+              <svg className="h-8 w-8 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg>
             </div>
-            <div className="text-3xl font-bold text-gray-900 mb-1">12</div>
+            <div className="text-3xl font-bold text-gray-900">12</div>
             <div className="text-sm text-gray-600">Specializations</div>
           </div>
-        </div>
+        </div> */}
 
-        {/* Timeline */}
-        <div className="relative">
-          {/* Central Timeline Line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-500 via-cyan-500 to-blue-600 rounded-full opacity-30"></div>
-
-          <div className="space-y-16">
-            {milestones.map((milestone, index) => (
-              <div
-                key={milestone.year}
-                className={`relative animate-in fade-in slide-in-from-${index % 2 === 0 ? "left" : "right"} duration-1000`}
-                style={{ animationDelay: `${index * 300}ms` }}
-              >
-                {/* Timeline Node */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-8">
-                  <div
-                    className={`w-8 h-8 bg-gradient-to-r ${milestone.color} rounded-full shadow-lg border-4 border-white animate-pulse`}
-                  >
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-white/30 to-transparent"></div>
-                  </div>
+        {/* Left + Right Sections */}
+        <div className="flex flex-col md:flex-row gap-8 items-start mt-10">
+          {/* Left Section: Office Presence */}
+          <div className="md:w-1/3 w-full bg-white/90 backdrop-blur-sm rounded-lg shadow-md p-6 flex flex-col items-start mb-8 md:mb-0 relative z-10">
+            <h3 className="text-2xl font-bold text-blue-800 mb-2">We Have Office Presence</h3>
+            <p className="text-gray-700 mb-4">
+              Our footprint spans <span className="font-semibold">{totalOffices} Indian cities</span>, with headquarters in Delhi and specialist teams across metro and emerging markets.
+            </p>
+            <Card className="mb-2 w-full">
+              <CardContent>
+                <div className="flex flex-col">
+                  <span className="font-semibold">Total Team Size:</span>
+                  <span className="text-blue-600 text-xl font-bold">{totalTeamSize}+</span>
                 </div>
-
-                {/* Content */}
-                <div className={`grid lg:grid-cols-2 gap-8 ${index % 2 === 0 ? "" : "lg:grid-flow-col-dense"}`}>
-                  {/* Phase Info */}
-                  <div className={`${index % 2 === 0 ? "lg:text-right lg:pr-16" : "lg:pl-16"} space-y-4`}>
-                    <div className={`inline-block px-4 py-2 ${milestone.bgColor} rounded-full`}>
-                      <span className="text-sm font-semibold text-blue-700">{milestone.year}</span>
-                    </div>
-                    <h3 className="text-2xl font-bold text-gray-900">{milestone.title}</h3>
-                    <p className="text-gray-600 leading-relaxed">{milestone.description}</p>
-                    <div className="flex items-center space-x-4 text-sm text-gray-500">
-                      <div className="flex items-center space-x-1">
-                        <Building className="h-4 w-4" />
-                        <span>{milestone.offices.length} Offices</span>
-                      </div>
-                      <div className="flex items-center space-x-1">
-                        <Users className="h-4 w-4" />
-                        <span>
-                          {milestone.offices.reduce(
-                            (total, office) => total + Number.parseInt(office.team.replace("+", "")),
-                            0,
-                          )}
-                          + Team
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Offices Grid */}
-                  <div className={`${index % 2 === 0 ? "lg:pl-16" : "lg:pr-16"} space-y-4`}>
-                    <div className="grid gap-3">
-                      {milestone.offices.map((office, officeIndex) => (
-                        <Card
-                          key={office.city}
-                          className={`${milestone.bgColor} border-2 border-transparent hover:border-blue-300 hover:shadow-lg transition-all duration-300 transform hover:scale-105 group animate-in fade-in slide-in-from-bottom duration-500`}
-                          style={{ animationDelay: `${index * 300 + officeIndex * 100}ms` }}
-                        >
-                          <CardContent className="p-4">
-                            <div className="flex items-center justify-between">
-                              <div className="flex items-center space-x-3">
-                                <div
-                                  className={`w-10 h-10 bg-gradient-to-r ${milestone.color} rounded-lg flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300`}
-                                >
-                                  {office.type === "Head Office" ? (
-                                    <Building className="h-5 w-5 text-white" />
-                                  ) : (
-                                    <MapPin className="h-5 w-5 text-white" />
-                                  )}
-                                </div>
-                                <div>
-                                  <div className="flex items-center space-x-2">
-                                    <h4 className="font-semibold text-gray-900">{office.city}</h4>
-                                    {office.type === "Head Office" && (
-                                      <Badge className="bg-red-100 text-red-700 text-xs px-2 py-0.5">HQ</Badge>
-                                    )}
-                                  </div>
-                                  <p className="text-xs text-gray-600">{office.established}</p>
-                                </div>
-                              </div>
-                              <div className="text-right">
-                                <div className="text-sm font-medium text-blue-700">{office.team}</div>
-                                <div className="text-xs text-gray-500">{office.specialty}</div>
-                              </div>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      ))}
-                    </div>
-                  </div>
+              </CardContent>
+            </Card>
+            <Card className="mb-2 w-full">
+              <CardContent>
+                <div className="flex flex-col">
+                  <span className="font-semibold">Industries:</span>
+                  <span className="text-blue-600">FMCG, Healthcare, Education, Automobile, Retail, Banking, Real Estate, Telecom, E-commerce, IT/Fintech, Hospitality, Industrial, Power & Energy, Aviation, Social, Government & more</span>
                 </div>
-              </div>
-            ))}
+              </CardContent>
+            </Card>
+            <Card className="w-full">
+              <CardContent>
+                <div className="flex flex-col">
+                  <span className="font-semibold">Pan India Coverage:</span>
+                  <span className="text-blue-600">15+ Major Cities</span>
+                  <span className="text-sm text-gray-600 mt-1">Metro, Tier-I & Tier-II Markets</span>
+                  <span className="text-sm text-gray-600">Strategic Presence Across All Regions</span>
+                </div>
+              </CardContent>
+            </Card>
           </div>
-        </div>
 
-        {/* Success Metrics */}
-        <div className="mt-20 animate-in fade-in slide-in-from-bottom duration-1000 delay-1000">
-          <Card className="bg-gradient-to-r from-blue-600 via-cyan-600 to-blue-700 text-white overflow-hidden relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/80 to-cyan-600/80"></div>
-            <CardContent className="relative p-8">
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-bold mb-4">Expansion Success</h3>
-                <p className="text-blue-100 max-w-2xl mx-auto">
-                  Our strategic expansion has positioned ANAMIX as a leading market research partner across India, with
-                  specialized expertise in every major market segment.
-                </p>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="text-center">
-                  <TrendingUp className="h-12 w-12 mx-auto mb-3 text-cyan-200" />
-                  <div className="text-3xl font-bold mb-2">100%</div>
-                  <div className="text-blue-100">Market Coverage</div>
+          {/* Right Section: Map */}
+          <div className="md:w-2/3 w-full relative bg-white/95 backdrop-blur-sm rounded-xl shadow-2xl p-6 relative z-10 border border-blue-200">
+            {/* Map Header */}
+            <div className="mb-4 text-center">
+              <h4 className="text-lg font-semibold text-blue-800 mb-2">Strategic Office Network</h4>
+              <div className="flex justify-center space-x-6 text-sm">
+                <div className="flex items-center space-x-2">
+                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                  <span className="text-gray-600">Head Office</span>
                 </div>
-                <div className="text-center">
-                  <Users className="h-12 w-12 mx-auto mb-3 text-blue-200" />
-                  <div className="text-3xl font-bold mb-2">12+</div>
-                  <div className="text-blue-100">Industry Specializations</div>
-                </div>
-                <div className="text-center">
-                  <Star className="h-12 w-12 mx-auto mb-3 text-cyan-200" />
-                  <div className="text-3xl font-bold mb-2">25+</div>
-                  <div className="text-blue-100">Years Combined Experience</div>
+                <div className="flex items-center space-x-2">
+                  <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                  <span className="text-gray-600">Branch Offices</span>
                 </div>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+
+            <ComposableMap
+              projection="geoMercator"
+              projectionConfig={{ center: [82.8, 22.5], scale: 1200 }}
+              width={800}
+              height={700}
+              data-tip=""
+              className="rounded-lg overflow-hidden shadow-lg"
+            >
+              {/* Background gradient */}
+              <defs>
+                <linearGradient id="mapGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#E0F2FE" />
+                  <stop offset="50%" stopColor="#DBEAFE" />
+                  <stop offset="100%" stopColor="#E0F7FA" />
+                </linearGradient>
+              </defs>
+
+              <Geographies geography={indiaGeoUrl}>
+                {({ geographies }) =>
+                  geographies.map(geo => (
+                    <Geography
+                      key={geo.rsmKey}
+                      geography={geo}
+                      fill="url(#mapGradient)"
+                      stroke="#3B82F6"
+                      strokeWidth={1}
+                      style={{
+                        default: { outline: "none" },
+                        hover: { fill: "#3B82F6", outline: "none", stroke: "#1D4ED8", strokeWidth: 2 },
+                        pressed: { outline: "none" },
+                      }}
+                    />
+                  ))
+                }
+              </Geographies>
+
+              {cities.map((city, index) => (
+                <Marker
+                  key={city.name}
+                  coordinates={city.coordinates}
+                  onMouseEnter={() => {
+                    setTooltipContent(
+                      `${city.name} - ${city.type}`
+                    )
+                  }}
+                  onMouseLeave={() => {
+                    setTooltipContent(null)
+                  }}
+                >
+                  {/* Animated pulse effect for HQ */}
+                  {city.type === "Head Office" && (
+                    <circle
+                      r={12}
+                      fill="none"
+                      stroke="#ef4444"
+                      strokeWidth={2}
+                      opacity={0.6}
+                      style={{
+                        animation: "pulse 2s infinite",
+                      }}
+                    />
+                  )}
+                  
+                  {/* Main marker */}
+                  <circle
+                    r={city.type === "Head Office" ? 8 : 6}
+                    fill={city.type === "Head Office" ? "#ef4444" : "#2563eb"}
+                    stroke="#fff"
+                    strokeWidth={3}
+                    style={{ 
+                      cursor: "pointer",
+                      filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.3))",
+                      transition: "all 0.3s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.transform = "scale(1.2)";
+                      e.target.style.filter = "drop-shadow(0 4px 8px rgba(0,0,0,0.4))";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.transform = "scale(1)";
+                      e.target.style.filter = "drop-shadow(0 2px 4px rgba(0,0,0,0.3))";
+                    }}
+                  />
+                  
+                  {/* City label */}
+                  <text
+                    textAnchor="middle"
+                    y={city.type === "Head Office" ? -15 : -12}
+                    style={{
+                      fontFamily: "Inter, sans-serif",
+                      fill: city.type === "Head Office" ? "#dc2626" : "#1e40af",
+                      fontSize: city.type === "Head Office" ? 14 : 12,
+                      fontWeight: city.type === "Head Office" ? "bold" : "normal",
+                      textShadow: "0 1px 2px rgba(255,255,255,0.8)",
+                    }}
+                  >
+                    {city.name}
+                  </text>
+                </Marker>
+              ))}
+            </ComposableMap>
+
+            {/* Enhanced Tooltip */}
+            {tooltipContent && (
+              <div className="absolute bottom-4 right-4 bg-white shadow-xl rounded-lg p-4 max-w-xs text-sm border border-blue-200 animate-in fade-in slide-in-from-bottom duration-300">
+                <div className="font-semibold text-blue-800 mb-1">Office Details</div>
+                <div className="text-gray-700 whitespace-pre-line">{tooltipContent}</div>
+                <div className="mt-2 text-xs text-blue-600">Click for more info</div>
+              </div>
+            )}
+
+
+          </div>
         </div>
       </div>
     </section>

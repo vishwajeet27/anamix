@@ -4,18 +4,29 @@ import Link from "next/link"
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-cyan-50 to-blue-100 min-h-screen flex items-center">
+    <section className="relative overflow-hidden min-h-screen flex items-center">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <img 
+          src="/pexels-fauxels-3184339.jpg" 
+          alt="Background" 
+          className="w-full h-full object-cover"
+        />
+        {/* Overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/70 via-blue-800/60 to-cyan-900/70"></div>
+      </div>
+
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-400/30 to-cyan-400/30 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-blue-500/20 to-blue-600/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-cyan-400/15 to-blue-400/15 rounded-full blur-3xl animate-pulse delay-500"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-400/20 to-cyan-400/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-blue-500/15 to-blue-600/15 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-cyan-400/10 to-blue-400/10 rounded-full blur-3xl animate-pulse delay-500"></div>
 
         {/* Floating particles */}
         {[...Array(20)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-2 h-2 bg-blue-400 rounded-full opacity-20 animate-float"
+            className="absolute w-2 h-2 bg-blue-400 rounded-full opacity-30 animate-float"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -30,22 +41,22 @@ export function HeroSection() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 animate-in fade-in slide-in-from-left duration-1000">
             <div className="space-y-4">
-              <div className="inline-flex items-center space-x-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium animate-in fade-in slide-in-from-top duration-700 delay-300">
+                            <div className="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-sm text-white border border-white/30 px-4 py-2 rounded-full text-sm font-medium animate-in fade-in slide-in-from-top duration-700 delay-300">
                 <Sparkles className="h-4 w-4" />
                 <span>Trusted by 500+ Companies</span>
               </div>
-              <h1 className="text-5xl lg:text-6xl font-bold leading-tight text-gray-900">
-                <span className="animate-in fade-in slide-in-from-left duration-1000 delay-500 block">
-                  TRUSTED DATA.
+                            <h1 className="text-5xl lg:text-6xl font-bold leading-tight text-white">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-100 to-cyan-200 animate-in fade-in slide-in-from-left duration-1000 delay-500 block">
+                  Data You Trust.
                 </span>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-700 animate-in fade-in slide-in-from-left duration-1000 delay-700 block">
-                  SMARTER DECISIONS.
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-blue-200 to-white animate-in fade-in slide-in-from-left duration-1000 delay-700 block">
+                  Decisions That Matter.
                 </span>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 via-blue-500 to-blue-800 animate-in fade-in slide-in-from-left duration-1000 delay-900 block">
-                  GLOBAL IMPACT.
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-blue-200 animate-in fade-in slide-in-from-left duration-1000 delay-900 block">
+                  Impact Worldwide.
                 </span>
               </h1>
-              <p className="text-xl text-gray-700 max-w-2xl leading-relaxed animate-in fade-in slide-in-from-left duration-1000 delay-1100">
+              <p className="text-xl text-white/90 max-w-2xl leading-relaxed animate-in fade-in slide-in-from-left duration-1000 delay-1100">
                 With over 25 years of combined experience in market research, ANAMIX delivers intelligent insights and
                 quality data across PAN INDIA. We transform analytics into actionable intelligence for your business
                 growth.
@@ -53,7 +64,11 @@ export function HeroSection() {
             </div>
             <div className="flex flex-col sm:flex-row gap-4 animate-in fade-in slide-in-from-left duration-1000 delay-1300">
               {/* Modern Get In Touch Button */}
-              <Link href="/contact-us">
+              <a 
+                href="https://wa.me/918104141622?text=Hi%20ANAMIX!%20I%20would%20like%20to%20learn%20more%20about%20your%20market%20research%20services.%20Can%20you%20help%20me?"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Button
                   size="lg"
                   className="relative group bg-gradient-to-r from-blue-600 via-blue-700 to-cyan-600 hover:from-blue-700 hover:via-cyan-600 hover:to-blue-800 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 rounded-xl px-8 py-3 overflow-hidden"
@@ -73,7 +88,7 @@ export function HeroSection() {
                     <Sparkles className="h-3 w-3 text-cyan-200 animate-pulse" />
                   </div>
                 </Button>
-              </Link>
+              </a>
 
               {/* Modern Watch Demo Button */}
               <Button
@@ -119,7 +134,7 @@ export function HeroSection() {
                     <div className="flex items-center space-x-3">
                       <BarChart3 className="h-8 w-8 text-blue-600 animate-bounce" />
                       <div>
-                        <p className="text-2xl font-bold text-blue-700 animate-pulse">85%</p>
+                        <p className="text-2xl font-bold text-blue-700 animate-pulse">97%</p>
                         <p className="text-sm text-blue-600">Data Accuracy</p>
                       </div>
                     </div>
@@ -128,7 +143,7 @@ export function HeroSection() {
                     <div className="flex items-center space-x-3">
                       <TrendingUp className="h-8 w-8 text-cyan-600 animate-bounce delay-300" />
                       <div>
-                        <p className="text-2xl font-bold text-cyan-700 animate-pulse delay-500">92%</p>
+                        <p className="text-2xl font-bold text-cyan-700 animate-pulse delay-500">99%</p>
                         <p className="text-sm text-cyan-600">Client Satisfaction</p>
                       </div>
                     </div>

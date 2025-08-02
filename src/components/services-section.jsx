@@ -1,9 +1,33 @@
 import { Card, CardContent } from "@/components/ui/card.jsx"
 import { Badge } from "@/components/ui/badge.jsx"
-import { BarChart3, Users, Globe, TrendingUp, CheckCircle, Star } from "lucide-react"
+import { BarChart3, Users, Globe, TrendingUp, CheckCircle, Star, Database, Cpu, FileText } from "lucide-react"
 
 export function ServicesSection() {
   const services = [
+    {
+      icon: Database,
+      title: "Data Collections",
+      description: "Systematic data gathering through quantitative and qualitative techniques, ensuring comprehensive coverage of your target market with precision and reliability.",
+      color: "text-blue-600",
+      hoverColor: "hover:border-blue-300",
+      bgColor: "bg-blue-50",
+    },
+    {
+      icon: Cpu,
+      title: "Data Processing",
+      description: "Advanced data processing tools and methodologies that transform raw information into actionable insights, tailored to your specific product and user requirements.",
+      color: "text-cyan-600",
+      hoverColor: "hover:border-cyan-300",
+      bgColor: "bg-cyan-50",
+    },
+    {
+      icon: FileText,
+      title: "Reports",
+      description: "Comprehensive, data-driven reports that provide clear insights and strategic recommendations, helping you make informed decisions based on thorough analysis.",
+      color: "text-blue-700",
+      hoverColor: "hover:border-blue-400",
+      bgColor: "bg-blue-100",
+    },
     {
       icon: BarChart3,
       title: "Market Analysis",

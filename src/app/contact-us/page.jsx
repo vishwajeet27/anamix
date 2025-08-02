@@ -122,7 +122,7 @@ export default function ContactUsPage() {
             <div className="mt-10 text-center text-gray-600">
               <p className="mb-2 font-semibold text-blue-700">ANAMIX RESEARCH PVT. LTD.</p>
               <p>Email: <a href="mailto:info@anamix.com" className="text-blue-600 hover:underline">info@anamix.com</a></p>
-              <p>Phone: <a href="tel:+911234567890" className="text-blue-600 hover:underline">+91 12345 67890</a></p>
+              <p>Phone: <a href="tel:+918104141622" className="text-blue-600 hover:underline">+91 81041 41622</a></p>
               <div className="mt-8 flex flex-col md:flex-row justify-center gap-8 text-left max-w-2xl mx-auto">
                 <div className="flex-1 bg-blue-50 rounded-lg p-4 shadow-sm border border-blue-100">
                   <div className="flex items-center mb-2">

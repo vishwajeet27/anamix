@@ -39,16 +39,19 @@ export function CTASection() {
             consultation today.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-in fade-in slide-in-from-bottom duration-1000 delay-500">
-            <Link href="/contact-us" passHref legacyBehavior>
+            <a 
+              href="https://wa.me/918104141622?text=Hi%20ANAMIX!%20I%20would%20like%20to%20start%20a%20free%20consultation%20for%20market%20research%20services.%20Can%20you%20help%20me?"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Button
-                as="a"
                 size="lg"
                 className="bg-white hover:bg-gray-100 text-blue-600 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 group"
               >
                 START FREE CONSULTATION
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
               </Button>
-            </Link>
+            </a>
             {/* <Button
               size="lg"
               variant="outline"
